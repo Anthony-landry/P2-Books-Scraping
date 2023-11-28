@@ -5,6 +5,8 @@ from bs4 import BeautifulSoup
 import requests
 
 
+# Importation de la fonction "Book"
+from scraper_book import get_dict_book
 # Recuperation du contenu de la page d'acceuil.
 htmlResponse = requests.get('http://books.toscrape.com/index.html')
 
@@ -55,7 +57,7 @@ for categorie, catUrl in categories.items():
     allBooksFromCurrentCategory = []
     for url in booksUrl:
         # Generation d'un dict à partir d'un URL.
-        # ...
+        currentBook = get_dict_book(url)
         print(url)
         currentBook = {}
         allBooksFromCurrentCategory.append(currentBook)

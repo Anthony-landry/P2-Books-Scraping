@@ -1,5 +1,7 @@
 # OpenClassrooms: Projet 2: Books To Scrape
 
+![books_to_scrape ](.readme/landry_anthony_developpeur_application-python_openclassrooms_books_to_scrape.png)
+
 Ce script permet de récupérer les informations de tout les produits sur le site http://books.toscrape.com/.
 Ces informations sont les suivantes:
  - URL du livre
@@ -33,7 +35,7 @@ Les données sont générées à la racine du projet suivant cette arborescence:
 Commencez tout d'abord par installer Python.
 Lancez ensuite la console, placez vous dans le dossier de votre choix puis clonez ce repository:
 ```
-git clone https://github.com/xxxxx/OC_P2_BooksToScrape.git
+git clone https://github.com/Anthony-landry/P2-Books-Scraping
 ```
 Placez vous dans le dossier OC_P2_BooksToScrape, puis créez un nouvel environnement virtuel:
 ```

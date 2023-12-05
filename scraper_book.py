@@ -31,20 +31,35 @@ def book_title(soup):
     return {'title': soup.h1.text}
 
 
-# Retourne un dictionnaire qui contient les avis et la description.
-def book_desc_reviews(soup):
-    desc = ""
+# Retourne un dictionnaire qui contient les avis .
+def book_reviews(soup):
     review = ""
-    # Boucle qui parcours les paragraphes la page en cours.
-    for p in soup.find_all('p'):
-        try:
-            rating = p['class']
-            if 'star-rating' in rating:
-                review = rating[1]
-        except KeyError:
-            desc = p.text
+
+    product = soup.find('div', {'class': 'product_main'})
+    if product:
+        # Boucle qui parcours les paragraphes la page en cours.
+        for p in product.find_all('p'):
+            try:
+                rating = p['class']
+                if 'star-rating' in rating:
+                    review = rating[1]
+            except KeyError:
+                pass
     return {
         'review_rating': review,
+    }
+
+
+# Retourne un dictionnaire qui contient la description.
+def book_desc(soup):
+    desc = ""
+
+    product = soup.find('article', {'class': 'product_page'})
+    if product:
+        # Boucle qui parcours les paragraphes la page en cours.
+        for p in product.find_all('p', recursive=False):
+            desc = p.text
+    return {
         'product_description': desc
     }
 
@@ -109,7 +124,8 @@ def get_dict_book(url):
     bookInfos = {}
     bookInfos.update(book_url(url))
     bookInfos.update(book_title(soup))
-    bookInfos.update(book_desc_reviews(soup))
+    bookInfos.update(book_reviews(soup))
+    bookInfos.update(book_desc(soup))
     bookInfos.update(book_category(soup))
     bookInfos.update(book_upc_prices_stocks(soup))
     bookInfos.update(book_img(soup))
